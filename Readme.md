@@ -104,7 +104,7 @@ The dashboard provides the following statistics:
 ### Backend
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Rsangram007/Task-Management-Application.git
    cd backend
    ```
 2. Install dependencies:
