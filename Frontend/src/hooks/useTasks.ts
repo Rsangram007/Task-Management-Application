@@ -13,11 +13,14 @@ export const useTasks = create<TasksState>((set) => ({
   tasks: [],
   fetchTasks: async (token) => {
     try {
-      const response = await fetch("http://localhost:5000/api/tasks", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://task-management-application-zykn.onrender.com/api/tasks",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         set({ tasks: data });
@@ -30,14 +33,17 @@ export const useTasks = create<TasksState>((set) => ({
   },
   addTask: async (newTask, token) => {
     try {
-      const response = await fetch("http://localhost:5000/api/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(newTask),
-      });
+      const response = await fetch(
+        "https://task-management-application-zykn.onrender.com/api/tasks",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(newTask),
+        }
+      );
       if (response.ok) {
         const createdTask = await response.json();
         set((state) => ({ tasks: [...state.tasks, createdTask] }));
@@ -60,7 +66,7 @@ export const useTasks = create<TasksState>((set) => ({
       };
 
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${editedTask._id}`,
+        `https://task-management-application-zykn.onrender.com/api/tasks/${editedTask._id}`,
         {
           method: "PUT",
           headers: {
@@ -101,12 +107,15 @@ export const useTasks = create<TasksState>((set) => ({
 
   deleteTask: async (id: string, token: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://task-management-application-zykn.onrender.com/api/tasks/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("Delete response:", response);
       if (response.ok) {
         set((state) => ({

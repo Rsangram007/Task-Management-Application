@@ -22,11 +22,14 @@ export const useAuth = create<AuthState>()(
       isAuthenticated: false,
       signIn: async (email: string, password: string) => {
         try {
-          const response = await fetch("http://localhost:5000/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
-          });
+          const response = await fetch(
+            "https://task-management-application-zykn.onrender.com/api/auth/login",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+            }
+          );
 
           if (response.ok) {
             const data = await response.json();
@@ -51,7 +54,7 @@ export const useAuth = create<AuthState>()(
       signUp: async (email: string, password: string, name: string) => {
         try {
           const response = await fetch(
-            "http://localhost:5000/api/auth/register",
+            "https://task-management-application-zykn.onrender.com/api/auth/register",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

@@ -15,7 +15,7 @@ import {
   TableHead,
   TableRow,
 } from "../components/ui/table";
-
+import Loader   from './Loader'
 export function Dashboard() {
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ export function Dashboard() {
       try {
         const token = localStorage.getItem("authToken"); // Get token from storage
         const response = await fetch(
-          "http://localhost:5000/api/tasks/statistics",
+          "https://task-management-application-zykn.onrender.com/api/tasks/statistics",
           {
             method: "GET",
             headers: {
@@ -52,9 +52,13 @@ export function Dashboard() {
     fetchStatistics();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+    if (loading) {
+      return (
+        <div className="flex items-center justify-center h-screen">
+          <Loader />
+        </div>
+      );
+    }
 
   if (error) {
     return <div>Error: {error}</div>;
